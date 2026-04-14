@@ -20,6 +20,7 @@
             background-color: #050505; 
             color: #e0e0e0; 
             margin: 0;
+            line-height: 1.5;
         }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -46,9 +47,11 @@
         const App = () => {
             const [activeTab, setActiveTab] = useState('invitation');
             const logoUrl = "https://pub-b817e22edf6447beb72ee04f1adf2d70.r2.dev/0401/SWAG-Logo-White-1200.png";
+            const scriptLink = "https://docs.google.com/document/d/1GKy4xDrRLcb3mfNbpUwy4lWrOf84ioZTvGRcaMstWgE/edit?usp=sharing";
             
+            // 企劃名稱統一
             const plans = [
-                { id: 'plan1', title: '情色真心話大冒險', type: '企劃一', requirement: '4 男優 / 4 女優', desc: '【遊戲】\n現場進行大尺度真心話提問，建立曖昧張力\n\n【實戰】\n根據遊戲結果進行男女優場域分配，執行實戰表演。', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-pink-600 to-purple-600' },
+                { id: 'plan1', title: '抽插高潮大冒險', type: '企劃一', requirement: '4 男優 / 4 女優', desc: '【遊戲】\n現場進行大尺度真心話提問，建立曖昧張力\n\n【實戰】\n根據遊戲結果進行男女優場域分配，執行實戰表演。', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-pink-600 to-purple-600' },
                 { id: 'plan2', title: '成人版國王遊戲', type: '企劃二', requirement: '4 男優 / 4 女優', desc: '【互動】\n國王下達色氣動作指令，考驗大家默契與實力\n\n【實戰】\n根據遊戲結果進行男女優場域分配，進行實戰表演。', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-amber-600 to-red-600' },
                 { id: 'plan3', title: '嚕硬套圈大賽', type: '企劃三', requirement: '4 男優 / 4 女優', desc: '【互動】\n男優勃起，女優限時套圈決定第二階段場域權\n\n【實戰】\n獲勝者可優先選擇高畫質場景進行實戰表演', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-blue-600 to-cyan-600' },
                 { id: 'plan4', title: '隨機性愛配對', type: '企劃四', requirement: '4 男優 / 4 女優', desc: '【互動】\n女優蒙眼僅靠觸摸與呼吸氣味挑選伴侶\n\n【實戰】\n與「命定對象」進行 90 分鐘實戰演出', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-rose-600 to-pink-500' }
@@ -60,24 +63,26 @@
                 { icon: "lock", title: '隱私安全', desc: '活動時間直播民宿進出將有嚴格控管，杜絕不明人士進出。' }
             ];
 
+            // 卡司時間軸數據 (已更新名稱)
             const castTimeline = [
-                { theme: '抽插高潮大冒險 (企劃一)', time: '4/25 (六) 20:00 - 23:00', male: ['石巴朝'], female: [], type: 'plan' },
-                { theme: '抽插高潮大冒險 (企劃二)', time: '4/25 (六) 23:00 - 4/26 (日) 02:00', male: ['季耕'], female: [], type: 'plan' },
+                { theme: '企劃一：抽插高潮大冒險', time: '4/25 (六) 20:00 - 23:00', male: ['石巴朝'], female: [], type: 'plan' },
+                { theme: '企劃二：成人版國王遊戲', time: '4/25 (六) 23:00 - 4/26 (日) 02:00', male: ['季耕'], female: [], type: 'plan' },
                 { theme: '實境直播 (Voyeur Mode)', time: '4/26 (日) 02:00 - 14:00', male: ['季耕', '石巴朝'], female: [], type: 'reality' },
-                { theme: '嚕硬套圈大賽 (企劃三)', time: '4/26 (日) 14:00 - 17:00', male: ['曾強', '石巴朝', '季耕'], female: [], type: 'plan' },
-                { theme: '隨機配對 (企劃四)', time: '4/26 (日) 17:00 - 20:00', male: [], female: [], type: 'plan' }
+                { theme: '企劃三：嚕硬套圈大賽', time: '4/26 (日) 14:00 - 17:00', male: ['曾強', '石巴朝', '季耕'], female: [], type: 'plan' },
+                { theme: '企劃四：隨機性愛配對', time: '4/26 (日) 17:00 - 20:00', male: [], female: [], type: 'plan' }
             ];
 
+            // 視覺時程表數據 (已更新名稱)
             const visualTimeline = [
                 { date: '4/25 (六)', range: '20:00 - 21:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/25 (六)', range: '21:00 - 23:00', dur: 2, label: '正式直播節目', type: 'live', icon: "video" },
+                { date: '4/25 (六)', range: '21:00 - 23:00', dur: 2, label: '企劃一：抽插高潮大冒險', type: 'live', icon: "video" },
                 { date: '4/25 (六)', range: '23:00 - 00:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/26 (日)', range: '00:00 - 02:00', dur: 2, label: '正式直播節目', type: 'live', icon: "video", sub: '深夜場' },
+                { date: '4/26 (日)', range: '00:00 - 02:00', dur: 2, label: '企劃二：成人版國王遊戲', type: 'live', icon: "video", sub: '深夜場' },
                 { date: '4/26 (日)', range: '02:00 - 14:00', dur: 12, label: '實境直播 (自由活動、休息)', type: 'reality', icon: "eye", sub: 'Voyeur Mode 側錄模式' },
                 { date: '4/26 (日)', range: '14:00 - 16:00', dur: 2, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/26 (日)', range: '16:00 - 17:00', dur: 1, label: '正式直播節目', type: 'live', icon: "video", sub: '午後場' },
+                { date: '4/26 (日)', range: '16:00 - 17:00', dur: 1, label: '企劃三：嚕硬套圈大賽', type: 'live', icon: "video", sub: '午後場' },
                 { date: '4/26 (日)', range: '17:00 - 18:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/26 (日)', range: '18:00 - 20:00', dur: 2, label: '正式直播節目', type: 'live', icon: "video", sub: '最終場' }
+                { date: '4/26 (日)', range: '18:00 - 20:00', dur: 2, label: '企劃四：隨機性愛配對', type: 'live', icon: "video", sub: '最終場' }
             ];
 
             return (
@@ -101,14 +106,14 @@
                     </header>
 
                     <main className="flex-grow pt-28 pb-10 px-4 md:px-6 max-w-7xl mx-auto w-full box-border">
-                        {/* Hero */}
+                        {/* Hero Section */}
                         <section className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/5 mb-10 shadow-2xl">
                             <div className="p-8 md:p-16 relative z-10 text-balance">
                                 <div className="inline-flex items-center gap-2 mb-6 bg-[#FF0055]/20 px-4 py-1.5 rounded-full border border-[#FF0055]/30 shadow-md">
                                     <Icon name="zap" size={14} className="text-[#FF0055]" />
                                     <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#FF0055]"> 24HR 麻豆女神實境直播 </span>
                                 </div>
-                                <h1 className="text-4xl md:text-8xl font-black text-white mb-8 leading-[1.1] italic tracking-tighter">楚門的慾望世界<br/><span className="text-[#FF0055]">TRUMAN SHOW</span></h1>
+                                <h1 className="text-4xl md:text-8xl font-black text-white mb-8 leading-[1.1] italic tracking-tighter text-balance uppercase">楚門的慾望世界<br/><span className="text-[#FF0055]">TRUMAN SHOW</span></h1>
                                 <p className="text-gray-400 text-base md:text-2xl max-w-3xl font-light leading-relaxed mb-10">希望邀請 <span className="text-white font-bold underline decoration-[#FF0055] decoration-2 underline-offset-8"> 麻豆男女優們 </span> 加入 2026 年度最受矚目的 24 小時實境直播企劃，這是一場集結 <span className="text-white font-bold italic"> 人氣、窺探與情慾 </span> 的終極直播秀。</p>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 border-t border-white/5 pt-10">
                                     <div className="flex items-center gap-4"><Icon name="calendar" className="text-gray-600" /><div><p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest"> 活動日期 </p><p className="font-bold text-lg">4/25 (六) - 4/26 (日)</p></div></div>
@@ -119,7 +124,7 @@
                             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF0055]/10 to-transparent opacity-60"></div>
                         </section>
 
-                        {/* Tabs */}
+                        {/* Tab Buttons */}
                         <div className="flex gap-4 md:gap-8 mb-8 border-b border-white/5 overflow-x-auto whitespace-nowrap pb-1 scrollbar-hide">
                             {[
                                 {id:'invitation', l:'邀約內容 & 待遇'},
@@ -135,20 +140,20 @@
 
                         {/* Content Area */}
                         <div className="min-h-[500px]">
-                            {/* 分頁內容 */}
+                            {/* 1. 邀約內容分頁 */}
                             {activeTab === 'invitation' && (
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in text-balance">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in">
                                     <div className="space-y-6">
-                                        <div className="p-8 rounded-[2.5rem] bg-[#111] border border-white/5 shadow-2xl sticky top-24">
+                                        <div className="p-8 rounded-[2.5rem] bg-[#111] border border-white/5 shadow-2xl lg:sticky lg:top-24">
                                             <h3 className="text-xl font-black text-white mb-6 uppercase tracking-tighter italic px-1"> 工作範疇 Scope </h3>
                                             <div className="space-y-6 text-sm">
-                                                <div className="flex gap-4"><Icon name="clipboard-check" className="text-[#FF0055] shrink-0" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 彩排 Re 稿 (60m) </p><p className="text-xs text-gray-500 italic px-1"> 確認動線與流程準備。 </p></div></div>
-                                                <div className="flex gap-4"><Icon name="video" className="text-[#FF0055] shrink-0" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播節目 (120m) </p><p className="text-xs text-gray-500 font-black italic text-[#FF0055] px-1"> 30 分鐘遊戲 ＋ 90 分鐘實戰演出。 </p></div></div>
-                                                <div className="flex gap-4"><Icon name="clock" className="text-gray-400 shrink-0" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播實境 (7H) </p><p className="text-xs text-gray-500 font-black italic text-amber-500 px-1"> 自然呈現、可參與住宿。 </p></div></div>
+                                                <div className="flex gap-4"><Icon name="clipboard-check" className="text-[#FF0055] shrink-0 shadow-lg" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 彩排 Re 稿 (60m) </p><p className="text-xs text-gray-500 italic px-1"> 確認動線與流程準備。 </p></div></div>
+                                                <div className="flex gap-4"><Icon name="video" className="text-[#FF0055] shrink-0 shadow-lg" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播節目 (120m) </p><p className="text-xs text-gray-500 font-black italic text-[#FF0055] px-1"> 30 分鐘遊戲 ＋ 90 分鐘實戰演出。 </p></div></div>
+                                                <div className="flex gap-4"><Icon name="clock" className="text-gray-400 shrink-0 shadow-lg" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播實境 (7H) </p><p className="text-xs text-gray-500 font-black italic text-amber-500 px-1"> 自然呈現、可參與住宿。 </p></div></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="lg:col-span-2 space-y-10">
+                                    <div className="lg:col-span-2 space-y-10 overflow-hidden">
                                         <div className="space-y-6">
                                             <h3 className="text-2xl font-black italic text-white flex items-center gap-3 px-2"> <Icon name="shield-check" className="text-[#FF0055]" /> 合作待遇 & 現場保障 </h3>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 px-1">
@@ -161,35 +166,49 @@
                                                 ))}
                                             </div>
                                         </div>
+                                        {/* 體檢報告區塊 */}
                                         <div className="bg-[#111] rounded-[2.5rem] p-8 md:p-10 border border-white/5 shadow-2xl relative group hover:border-amber-500/30 transition-all text-balance">
-                                            <div className="relative z-10 px-2">
-                                               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 text-balance">
+                                            <div className="relative z-10 px-1 md:px-2">
+                                               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                                                  <div className="flex items-center gap-4">
                                                     <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0"> <Icon name="stethoscope" size={24} /> </div>
                                                     <div> <h3 className="text-2xl font-black text-white italic tracking-widest px-1"> ［ 體檢報告 ］ </h3> <p className="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic px-1"> Medical Certification </p> </div>
                                                  </div>
                                                  <div className="flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full border border-amber-500/20 shadow-lg"> <Icon name="clock" size={14} className="text-amber-500" /> <span className="text-[10px] font-black text-amber-500 uppercase px-1"> 時效：下體 一個月內 </span> </div>
                                                </div>
-                                               <div className="space-y-6 px-1">
-                                                  <p className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2"> <Icon name="shield-alert" size={14} className="text-amber-500" /> 必備檢查項目 Items </p>
-                                                  <div className="flex flex-wrap gap-3"> {['愛滋病', '梅毒', '淋病', '菜花', '皰疹', '披衣菌', 'B型肝炎', 'C型肝炎'].map((it, idx) => ( <span key={idx} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-sm font-bold text-gray-200 shadow-sm"> {it} </span> ))} </div>
+                                               <div className="space-y-6">
+                                                  <p className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2 px-1"> <Icon name="shield-alert" size={14} className="text-amber-500" /> 必備檢查項目 Items </p>
+                                                  <div className="flex flex-wrap gap-3 px-1"> {['愛滋病', '梅毒', '淋病', '菜花', '皰疹', '披衣菌', 'B型肝炎 (HBS抗原)', 'C型肝炎'].map((it, idx) => ( <span key={idx} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-sm font-bold text-gray-200 shadow-sm"> {it} </span> ))} </div>
                                                </div>
+                                               <p className="mt-10 text-[11px] text-gray-500 italic leading-relaxed pt-6 border-t border-white/5 px-1"> ※ 請參與演職員於錄影日前確認報告效期，並提供電子檔至經紀窗口備查，確保健康安全。 </p>
                                             </div>
                                         </div>
-                                        <div className="bg-gradient-to-r from-red-950/20 to-transparent p-6 md:p-8 rounded-[2rem] border border-red-500/20 shadow-lg px-6 mx-1">
+                                        {/* 手機版排版優化：演職員安全與隱私承諾 */}
+                                        <div className="bg-gradient-to-r from-red-950/20 to-transparent p-6 md:p-8 rounded-[2rem] border border-red-500/20 shadow-lg mx-1 overflow-hidden">
                                             <h4 className="text-red-500 font-bold mb-4 flex items-center gap-2 text-base md:text-lg px-1"> <Icon name="shield-check" size={20} /> 演職員安全與隱私承諾 </h4>
                                             <ul className="space-y-4 text-sm text-gray-400 px-1">
-                                                <li className="flex gap-2"> <span className="text-red-500">•</span> 除了直播指定區域，其餘房間皆標註為 <strong> 「絕對禁止攝影區」 </strong>。 </li>
-                                                <li className="flex gap-2"> <span className="text-red-500">•</span> 現場配備 <strong> 專業直播團隊 </strong>，確保演出完美呈現。 </li>
+                                                <li className="flex gap-3 items-start leading-relaxed"> 
+                                                    <span className="text-red-500 mt-1 flex-shrink-0">•</span> 
+                                                    <span className="flex-1">除了直播指定區域，其餘房間皆標註為 <strong> 「絕對禁止攝影區」 </strong>，確保私人隱私。</span>
+                                                </li>
+                                                <li className="flex gap-3 items-start leading-relaxed"> 
+                                                    <span className="text-red-500 mt-1 flex-shrink-0">•</span> 
+                                                    <span className="flex-1">現場配備 <strong> 專業直播團隊 </strong>，即時控管訊號與流暢度，確保演出完美呈現。</span>
+                                                </li>
+                                                <li className="flex gap-3 items-start leading-relaxed"> 
+                                                    <span className="text-red-500 mt-1 flex-shrink-0">•</span> 
+                                                    <span className="flex-1">實境直播期間若需休息，可隨時向工作人員提出，安排至 <strong> 無開播房間 </strong> 休息。</span>
+                                                </li>
                                             </ul>
                                         </div>
-                                        <div className="space-y-6 pt-10">
+                                        {/* 聯絡窗口資訊 */}
+                                        <div className="space-y-6 pt-10 text-balance">
                                             <h3 className="text-2xl font-black italic text-white flex items-center gap-3 px-2"> <Icon name="users" className="text-[#FF0055]" /> 聯絡窗口 Contact Information </h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1">
                                                <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group">
                                                   <span className="px-3 py-1 bg-[#FF0055]/20 text-[#FF0055] text-[10px] font-black uppercase tracking-widest rounded border border-[#FF0055]/30 italic mb-2 inline-block"> 主播經紀 </span>
                                                   <h4 className="text-2xl font-black text-white italic mb-6"> Kelvin </h4>
-                                                  <div className="space-y-3 text-sm font-bold text-gray-400">
+                                                  <div className="space-y-4 text-sm font-bold text-gray-400">
                                                       <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white"><Icon name="phone" size={14} /> 手機：0905514533</div>
                                                       <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white"><Icon name="message-square" size={14} /> Line ID：kelvin_0413</div>
                                                   </div>
@@ -197,7 +216,7 @@
                                                <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group">
                                                   <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest rounded border border-blue-500/30 italic mb-2 inline-block"> BD </span>
                                                   <h4 className="text-2xl font-black text-white italic mb-6"> Christine </h4>
-                                                  <div className="space-y-3 text-sm font-bold text-gray-400">
+                                                  <div className="space-y-4 text-sm font-bold text-gray-400">
                                                       <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white"><Icon name="phone" size={14} /> 手機：+886 916560694</div>
                                                       <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white"><Icon name="message-square" size={14} /> Line ID：christing515</div>
                                                   </div>
@@ -208,6 +227,7 @@
                                 </div>
                             )}
 
+                            {/* 2. 企劃大綱分頁 (統一名稱) */}
                             {activeTab === 'schedule' && (
                                 <div className="space-y-12 animate-fade-in text-balance">
                                     <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
@@ -235,13 +255,13 @@
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1">
                                         {plans.map((p, idx) => (
-                                            <div key={idx} className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-[#111] border border-white/5 p-8 flex flex-col group hover:border-[#FF0055]/30 transition-all min-h-[400px]">
+                                            <div key={idx} className="relative overflow-hidden rounded-[2.5rem] bg-[#111] border border-white/5 p-8 flex flex-col group hover:border-[#FF0055]/30 transition-all min-h-[400px]">
                                                 <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${p.color} opacity-30 group-hover:opacity-100 transition-opacity`}></div>
                                                 <div className="flex justify-between items-start mb-6 px-1">
                                                     <span className="px-3 py-1 bg-[#FF0055]/10 text-[#FF0055] rounded-lg text-[10px] font-black uppercase italic shadow-sm px-2"> {p.type} </span>
                                                     <div className="text-right px-1"> <p className="text-[10px] text-gray-600 font-black italic px-1"> 卡司需求 </p> <p className="text-[11px] font-black text-white italic whitespace-nowrap bg-white/5 px-2 py-0.5 rounded shadow-sm"> {p.requirement} </p> </div>
                                                 </div>
-                                                <h3 className="text-2xl font-black text-white italic tracking-tighter mb-4 px-1"> {p.title} </h3>
+                                                <h3 className="text-2xl font-black text-white italic tracking-tighter mb-4 px-1 text-balance"> {p.title} </h3>
                                                 <p className="text-gray-400 text-sm mb-8 italic whitespace-pre-line flex-grow px-1"> {p.desc} </p>
                                                 <div className="space-y-4 px-1 mt-auto">
                                                     <div className="flex gap-4">
@@ -258,11 +278,12 @@
                                 </div>
                             )}
 
+                            {/* 3. 活動時程表分頁 (更新標題內容) */}
                             {activeTab === 'timeline' && (
-                                <div className="max-w-4xl mx-auto px-1 animate-fade-in">
-                                    <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden text-balance">
+                                <div className="max-w-4xl mx-auto px-1 animate-fade-in text-balance">
+                                    <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF0055]/5 blur-[100px] rounded-full"></div>
-                                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-12 px-2 text-balance">
+                                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-12 px-2">
                                             <h3 className="text-2xl md:text-3xl font-black italic text-white uppercase px-1"> 24HRS <span className="text-[#FF0055]">Streaming</span> Orbit </h3>
                                             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 shadow-sm"> <Icon name="activity" size={14} className="text-red-500 animate-pulse" /> <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1"> Proportional Time-Scale </span> </div>
                                         </div>
@@ -274,7 +295,7 @@
                                                 {visualTimeline.map((it, idx) => (
                                                     <div key={idx} className={`relative w-full rounded-2xl border transition-all duration-500 group mb-3 flex flex-col overflow-hidden shadow-lg ${ it.type === 'live' ? 'bg-[#FF0055]/10 border-[#FF0055]/40 shadow-[0_0_20px_rgba(255,0,85,0.15)]' : it.type === 'reality' ? 'bg-amber-500/10 border-amber-500/30 border-dashed' : 'bg-white/5 border-white/10 grayscale hover:grayscale-0' }`} style={{ minHeight: `${it.dur * 70}px`, height: 'auto' }} >
                                                         <div className="p-4 md:p-6 flex flex-col justify-between h-full relative z-10 text-balance overflow-hidden">
-                                                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-balance overflow-hidden">
+                                                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 overflow-hidden text-balance">
                                                                 <div className="flex items-start gap-4">
                                                                     <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xl ${ it.type === 'live' ? 'bg-[#FF0055] text-white animate-pulse' : it.type === 'reality' ? 'bg-amber-500 text-black' : 'bg-white/10 text-gray-500' }`}> <Icon name={it.icon} /> </div>
                                                                     <div className="min-w-0">
@@ -282,9 +303,9 @@
                                                                         <h4 className={`text-base md:text-2xl font-black px-1 ${it.type === 'live' ? 'text-white' : 'text-gray-300'}`}> {it.label} </h4>
                                                                     </div>
                                                                 </div>
-                                                                <div className="sm:text-right shrink-0 px-1"> <p className="text-[8px] font-black text-gray-600 uppercase italic px-1"> Duration </p> <p className={`font-black text-sm md:text-xl ${it.type === 'live' ? 'text-[#FF0055]' : 'text-gray-400'} px-1`}> {it.dur}H </p> </div>
+                                                                <div className="sm:text-right shrink-0 pl-14 sm:pl-0 px-1"> <p className="text-[8px] font-black text-gray-600 uppercase italic px-1"> Duration </p> <p className={`font-black text-sm md:text-xl ${it.type === 'live' ? 'text-[#FF0055]' : 'text-gray-400'} px-1`}> {it.dur}H </p> </div>
                                                             </div>
-                                                            {it.sub && <div className="flex items-center gap-3 mt-6 pl-14 md:pl-16 px-1"> <div className="h-[1px] w-6 bg-white/20 shrink-0"></div> <span className="text-[11px] md:text-[12px] font-bold text-gray-500 uppercase italic text-balance"> {it.sub} </span> </div>}
+                                                            {it.sub && <div className="flex items-center gap-3 mt-6 pl-14 md:pl-16 px-1 text-balance"> <div className="h-[1px] w-6 bg-white/20 shrink-0"></div> <span className="text-[11px] md:text-[12px] font-bold text-gray-500 uppercase italic text-balance"> {it.sub} </span> </div>}
                                                         </div>
                                                     </div>
                                                 ))}
@@ -296,6 +317,7 @@
                                 </div>
                             )}
 
+                            {/* 4. 目前卡司分頁 (統一名稱) */}
                             {activeTab === 'cast' && (
                                 <div className="space-y-12 animate-fade-in px-1 text-balance">
                                     <div className="bg-gradient-to-br from-[#FF0055]/20 to-black p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-[#FF0055]/30 shadow-[0_0_50px_rgba(255,0,85,0.1)] relative overflow-hidden">
@@ -308,7 +330,7 @@
                                          </div>
                                          <div className="px-6 py-4 bg-white/5 border border-white/10 rounded-[2rem] flex items-center gap-4 shadow-xl">
                                             <Icon name="alert-circle" className="text-amber-500" />
-                                            <div><p className="text-[10px] text-gray-500 font-black uppercase px-1"> Status </p><p className="text-sm font-bold text-white whitespace-nowrap px-1"> 待確認，可能會調整 </p></div>
+                                            <div><p className="text-[10px] text-gray-500 font-black uppercase tracking-widest px-1"> Status </p><p className="text-sm font-bold text-white whitespace-nowrap px-1 text-balance"> 待確認，可能會調整 </p></div>
                                          </div>
                                        </div>
                                     </div>
@@ -316,18 +338,19 @@
                                        {castTimeline.map((s, i) => (
                                           <div key={i} className={`bg-[#111] rounded-[2.5rem] border p-8 hover:scale-[1.02] transition-all flex flex-col group shadow-xl ${s.type === 'reality' ? 'border-amber-500/40 bg-gradient-to-b from-amber-500/[0.03] to-[#111]' : 'border-white/5'}`}>
                                             <div className="mb-8 pb-6 border-b border-white/5 px-1 relative">
-                                               <div className="flex items-center gap-2 mb-2 px-1"> <span className={`w-2 h-2 rounded-full animate-pulse ${s.type==='reality'?'bg-amber-500 shadow-[0_0_8px_#F59E0B]':'bg-[#FF0055] shadow-[0_0_8px_#FF0055]'}`}></span> <p className={`text-[10px] font-black uppercase tracking-widest italic ${s.type==='reality'?'text-amber-500':'text-gray-500'}`}> {s.time} </p> </div>
+                                               <div className="flex items-center gap-2 mb-2 px-1 text-balance"> <span className={`w-2 h-2 rounded-full animate-pulse ${s.type==='reality'?'bg-amber-500 shadow-[0_0_8px_#F59E0B]':'bg-[#FF0055] shadow-[0_0_8px_#FF0055]'}`}></span> <p className={`text-[10px] font-black uppercase tracking-widest italic ${s.type==='reality'?'text-amber-500':'text-gray-500'}`}> {s.time} </p> </div>
                                                <h4 className="text-xl font-black text-white italic tracking-tight leading-tight group-hover:text-[#FF0055] transition-colors px-1 text-balance"> {s.theme} </h4>
+                                               {s.type==='reality' && <div className="absolute top-0 right-0 opacity-20 px-2"><Icon name="eye" size={20} className="text-amber-500" /></div>}
                                             </div>
-                                            <div className="space-y-8 flex-grow px-1">
+                                            <div className="space-y-8 flex-grow px-1 text-balance">
                                                <div>
-                                                 <div className="flex justify-between items-center mb-4 px-1"> <p className="text-[10px] font-black text-gray-400 uppercase flex items-center gap-2 px-1"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 男優 Actor </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1"> Slot: {s.male.length}/4 </p> </div>
+                                                 <div className="flex justify-between items-center mb-4 px-1"> <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2 px-1 text-balance"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 男優 Actor </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1"> Slot: {s.male.length}/4 </p> </div>
                                                  <div className="grid grid-cols-2 gap-2 px-1"> {Array.from({length:4}).map((_,j)=>(
                                                      <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.male[j]?'bg-white/5 border-white/10 text-white shadow-inner':'border-dashed border-white/10 text-gray-700'}`}> {s.male[j] ? <><Icon name="user-check" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> {s.male[j]}</> : '邀約中'} </div>
                                                  ))} </div>
                                                </div>
                                                <div>
-                                                 <div className="flex justify-between items-center mb-4 px-1"> <p className="text-[10px] font-black text-gray-400 uppercase flex items-center gap-2 px-1"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 女優 Actress </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1"> Slot: {s.female.length}/4 </p> </div>
+                                                 <div className="flex justify-between items-center mb-4 px-1"> <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2 px-1 text-balance"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 女優 Actress </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1"> Slot: {s.female.length}/4 </p> </div>
                                                  <div className="grid grid-cols-2 gap-2 px-1"> {Array.from({length:4}).map((_,j)=>(
                                                      <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.female[j]?'bg-[#FF0055]/10 border-[#FF0055]/30 text-[#FF0055] shadow-md':'border-dashed border-white/10 text-gray-700'}`}> {s.female[j] ? <><Icon name="user-check" size={12} /> {s.female[j]}</> : '邀約中'} </div>
                                                  ))} </div>
@@ -336,9 +359,9 @@
                                           </div>
                                        ))}
                                     </div>
-                                    <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-6 shadow-2xl px-8 mx-1">
+                                    <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-6 shadow-2xl px-8 mx-1 text-balance">
                                        <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20 shadow-lg px-2"> <Icon name="alert-circle" className="text-amber-500" /> </div>
-                                       <p className="text-xs md:text-sm text-gray-500 italic leading-relaxed px-1"> ※ 重要說明：官方保有調整卡司及內容之權利。 </p>
+                                       <p className="text-xs md:text-sm text-gray-500 italic leading-relaxed px-1 text-balance"> ※ 重要說明：官方保有調整卡司及內容之權利。 </p>
                                     </div>
                                 </div>
                             )}
@@ -353,7 +376,7 @@
                                 <h2 className="text-xl md:text-2xl font-black text-white italic tracking-[0.2em] uppercase underline decoration-[#FF0055] decoration-2 underline-offset-8 px-1"> 楚門的慾望世界 </h2> 
                                 <p className="text-[10px] text-[#FF0055] font-black uppercase tracking-widest px-2"> 24HR 麻豆女神實境直播 </p> 
                             </div>
-                            <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light px-4 px-1"> 本企劃為 SWAG 官方機密商業提案，專門針對優秀演藝人員發出之邀請。若有報價細節諮詢，請透過經紀管道與窗口聯繫。 </p>
+                            <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light px-4 px-1 text-balance"> 本企劃為 SWAG 官方機密商業提案，專門針對優秀演藝人員發出之邀請。若有報價細節諮詢，請透過經紀管道與窗口聯繫。 </p>
                             <div className="pt-10 flex flex-col items-center gap-2"> 
                                 <p className="text-[9px] font-black text-gray-700 uppercase tracking-[0.8em] px-1"> Production Team / SWAG Official </p> 
                                 <p className="text-[10px] md:text-xs text-gray-400 font-mono italic tracking-widest uppercase px-1"> Proposal ID: SWAG-ACTOR-RECRUIT-2026 </p> 
