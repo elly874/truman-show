@@ -18,7 +18,7 @@
         body { 
             font-family: 'Noto Sans TC', sans-serif; 
             background-color: #050505; 
-            color: #f0f0f0; 
+            color: #e0e0e0; 
             margin: 0;
             line-height: 1.5;
         }
@@ -48,11 +48,11 @@
             const [activeTab, setActiveTab] = useState('invitation');
             const logoUrl = "https://pub-b817e22edf6447beb72ee04f1adf2d70.r2.dev/0401/SWAG-Logo-White-1200.png";
             
-            // 企劃名稱全面統一
+            // 企劃名稱統一
             const plans = [
                 { id: 'plan1', title: '抽插高潮大冒險', type: '企劃一', requirement: '4 男優 / 4 女優', desc: '【遊戲】\n現場進行大尺度真心話提問，建立曖昧張力\n\n【實戰】\n根據遊戲結果進行男女優場域分配，執行實戰表演。', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-pink-600 to-purple-600' },
                 { id: 'plan2', title: '成人版國王遊戲', type: '企劃二', requirement: '4 男優 / 4 女優', desc: '【互動】\n國王下達色氣動作指令，考驗大家默契與實力\n\n【實戰】\n根據遊戲結果進行男女優場域分配，進行實戰表演。', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-amber-600 to-red-600' },
-                { id: 'plan3', title: '嚕硬套圈大賽', type: '企劃三', requirement: '4 男優 / 4 女優', desc: '【互動】\n男優勃起，女優限時套圈決定第二階段場域權\n\n【實戰】\n獲勝者可優先選擇場景進行實戰表演', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-blue-600 to-cyan-600' },
+                { id: 'plan3', title: '嚕硬套圈大賽', type: '企劃三', requirement: '4 男優 / 4 女優', desc: '【互動】\n男優勃起，女優限時套圈決定第二階段場域權\n\n【實戰】\n獲勝者可優先選擇高畫質場景進行實戰表演', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-blue-600 to-cyan-600' },
                 { id: 'plan4', title: '隨機性愛配對', type: '企劃四', requirement: '4 男優 / 4 女優', desc: '【互動】\n女優蒙眼僅靠觸摸與呼吸氣味挑選伴侶\n\n【實戰】\n與「命定對象」進行 90 分鐘實戰演出', phase1Label: '30M 遊戲', phase2Label: '90Ｍ 實戰直播', color: 'from-rose-600 to-pink-500' }
             ];
 
@@ -62,55 +62,56 @@
                 { icon: "lock", title: '隱私安全', desc: '活動時間直播民宿進出將有嚴格控管，杜絕不明人士進出。' }
             ];
 
-            // 卡司數據依照 PDF 最新名單更新
-            const castTimeline = [
-                { 
-                    theme: '企劃一：抽插高潮大冒險', 
-                    time: '4/25 (六) 20:00 - 23:00', 
-                    male: ['小麥', '石巴朝'], 
-                    female: ['娃娃 翁雨澄', '優娜', '林思妤'], 
-                    type: 'plan' 
+            // 卡司名單依照附件更新 (已整併 翁雨澄 與 娃娃)
+            const castData = [
+                {
+                    theme: '企劃一：抽插高潮大冒險',
+                    time: '4/25 (六) 20:00 - 22:00',
+                    female: ['娜娜莫夕慈', '翁雨澄 (娃娃)', '小巴', '蔡雨潼'],
+                    male: ['秋元', '曾強', '茶杯', '小麥'],
+                    type: 'plan'
                 },
-                { 
-                    theme: '企劃二：成人版國王遊戲', 
-                    time: '4/25 (六) 23:00 - 4/26 (日) 02:00', 
-                    male: ['季耕', '小麥'], 
-                    female: ['鍾宛冰', '宋南伊'], 
-                    type: 'plan' 
+                {
+                    theme: '企劃二：成人版國王遊戲',
+                    time: '4/25 (六) 23:00 - 01:00',
+                    female: ['宋南伊', '芝芝', '鍾宛冰', '艾熙'],
+                    male: ['季耕', '石巴朝', '泰山'],
+                    type: 'plan'
                 },
-                { 
-                    theme: '實境直播 (Voyeur Mode)', 
-                    time: '4/26 (日) 02:00 - 14:00', 
-                    male: ['季耕', '石巴朝'], 
-                    female: ['壞壞 林沁兒', '鍾宛冰'], 
-                    type: 'reality' 
+                {
+                    theme: '實境直播 (Voyeur Mode)',
+                    time: '4/26 (日) 02:00 - 14:00',
+                    female: ['宋南伊', '鍾宛冰', '芝芝', '艾熙', '壞壞 林沁兒'],
+                    male: ['季耕', '泰山', '石巴朝'],
+                    type: 'reality'
                 },
-                { 
-                    theme: '企劃三：嚕硬套圈大賽', 
-                    time: '4/26 (日) 14:00 - 17:00', 
-                    male: ['季耕', '曾強', '石巴朝'], 
-                    female: ['壞壞 林沁兒'], 
-                    type: 'plan' 
+                {
+                    theme: '企劃三：嚕硬套圈大賽',
+                    time: '4/26 (日) 15:00 - 17:00',
+                    female: ['壞壞 林沁兒', '米歐', '凱西宋東琳', '林思妤'],
+                    male: ['小狼', '石巴朝', '曾強', '季耕'],
+                    type: 'plan'
                 },
-                { 
-                    theme: '企劃四：隨機性愛配對', 
-                    time: '4/26 (日) 17:00 - 20:00', 
-                    male: ['小麥'], 
-                    female: ['蘇暢', '黎芷瑄', '宋雨川'], 
-                    type: 'plan' 
+                {
+                    theme: '企劃四：隨機性愛配對',
+                    time: '4/26 (日) 18:00 - 20:00',
+                    female: ['宋雨川', '蘇暢', '黎芷瑄', '金寶娜'],
+                    male: ['小狼', '小麥', '曾強', '秋元'],
+                    type: 'plan'
                 }
             ];
 
             // 視覺時程表
             const visualTimeline = [
-                { date: '4/25 (六)', range: '20:00 - 21:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/25 (六)', range: '21:00 - 23:00', dur: 2, label: '企劃一：抽插高潮大冒險', type: 'live', icon: "video" },
-                { date: '4/25 (六)', range: '23:00 - 00:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
-                { date: '4/26 (日)', range: '00:00 - 02:00', dur: 2, label: '企劃二：成人版國王遊戲', type: 'live', icon: "video", sub: '深夜場' },
-                { date: '4/26 (日)', range: '02:00 - 14:00', dur: 12, label: '實境直播 (Voyeur Mode)', type: 'reality', icon: "eye", sub: '12H 實境橋段設計' },
-                { date: '4/26 (日)', range: '14:00 - 15:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
+                { date: '4/25 (六)', range: '19:00 - 20:00', dur: 1, label: '現場彩排 / 準備', type: 'rest', icon: "clipboard-list" },
+                { date: '4/25 (六)', range: '20:00 - 22:00', dur: 2, label: '企劃一：抽插高潮大冒險', type: 'live', icon: "video" },
+                { date: '4/25 (六)', range: '22:00 - 23:00', dur: 1, label: '彩排 / 整理現場', type: 'rest', icon: "brush" },
+                { date: '4/25 (六)', range: '23:00 - 01:00', dur: 2, label: '企劃二：成人版國王遊戲', type: 'live', icon: "video", sub: '深夜場' },
+                { date: '4/26 (日)', range: '01:00 - 02:00', dur: 1, label: '彩排 / 整理現場', type: 'rest', icon: "brush" },
+                { date: '4/26 (日)', range: '02:00 - 14:00', dur: 12, label: '實境直播 (自由活動、休息)', type: 'reality', icon: "eye", sub: 'Voyeur Mode 側錄模式' },
+                { date: '4/26 (日)', range: '14:00 - 15:00', dur: 1, label: '彩排 / 整理現場', type: 'rest', icon: "brush" },
                 { date: '4/26 (日)', range: '15:00 - 17:00', dur: 2, label: '企劃三：嚕硬套圈大賽', type: 'live', icon: "video", sub: '午後場' },
-                { date: '4/26 (日)', range: '17:00 - 18:00', dur: 1, label: '準備 / 休息', type: 'rest', icon: "coffee" },
+                { date: '4/26 (日)', range: '17:00 - 18:00', dur: 1, label: '彩排 / 整理現場', type: 'rest', icon: "brush" },
                 { date: '4/26 (日)', range: '18:00 - 20:00', dur: 2, label: '企劃四：隨機性愛配對', type: 'live', icon: "video", sub: '最終場' }
             ];
 
@@ -118,16 +119,16 @@
                 <div className="min-h-screen flex flex-col bg-[#050505]">
                     {/* Header */}
                     <header className="fixed top-0 left-0 w-full z-50 bg-black/95 border-b border-white/5 shadow-xl backdrop-blur-md">
-                        <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center">
+                        <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center text-balance">
                             <div className="flex items-center gap-4">
                                 <img src={logoUrl} alt="SWAG" className="h-7 md:h-9 w-auto" />
                                 <div className="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
-                                <div className="hidden sm:flex flex-col text-balance overflow-hidden text-left">
-                                    <span className="text-[10px] font-black text-[#FF0055] uppercase tracking-widest leading-none text-left"> Official Partnership Invitation </span>
-                                    <span className="text-sm font-bold text-white tracking-widest mt-1 text-left"> 楚門的慾望世界｜24HR 麻豆女神實境直播 </span>
+                                <div className="hidden sm:flex flex-col">
+                                    <span className="text-[10px] font-black text-[#FF0055] uppercase tracking-widest leading-none"> Official Partnership Invitation </span>
+                                    <span className="text-sm font-bold text-white tracking-widest mt-1"> 楚門的慾望世界｜24HR 麻豆女神實境直播 </span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 px-3 py-1 bg-[#FF0055]/10 border border-[#FF0055]/30 rounded-full shadow-lg shrink-0">
+                            <div className="flex items-center gap-2 px-3 py-1 bg-[#FF0055]/10 border border-[#FF0055]/30 rounded-full shadow-lg">
                                 <Icon name="star" size={12} className="text-[#FF0055]" />
                                 <span className="text-[9px] font-black text-[#FF0055] uppercase tracking-widest"> Recruiting </span>
                             </div>
@@ -135,144 +136,125 @@
                     </header>
 
                     <main className="flex-grow pt-28 pb-10 px-4 md:px-6 max-w-7xl mx-auto w-full box-border">
-                        {/* Hero Section */}
-                        <section className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/5 mb-10 shadow-2xl">
-                            <div className="p-8 md:p-16 relative z-10 text-balance text-left">
+                        {/* Hero */}
+                        <section className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/5 mb-10 shadow-2xl text-balance">
+                            <div className="p-8 md:p-16 relative z-10 text-balance">
                                 <div className="inline-flex items-center gap-2 mb-6 bg-[#FF0055]/20 px-4 py-1.5 rounded-full border border-[#FF0055]/30 shadow-md">
                                     <Icon name="zap" size={14} className="text-[#FF0055]" />
                                     <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#FF0055]"> 24HR 麻豆女神實境直播 </span>
                                 </div>
-                                <h1 className="text-4xl md:text-8xl font-black text-white mb-8 leading-[1.1] italic tracking-tighter text-balance uppercase text-left">楚門的慾望世界<br/><span className="text-[#FF0055]">TRUMAN SHOW</span></h1>
-                                <p className="text-gray-300 text-base md:text-2xl max-w-3xl font-light leading-relaxed mb-10 text-left">邀請 <span className="text-white font-bold underline decoration-[#FF0055] decoration-2 underline-offset-8"> 優秀麻豆男女優們 </span> 加入 2026 年度最受矚目的 24 小時實境直播企劃，這是一場集結 <span className="text-white font-bold italic"> 人氣、窺探與情慾 </span> 的終極直播秀。</p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 border-t border-white/5 pt-10 text-left">
-                                    <div className="flex items-center gap-4"><Icon name="calendar" className="text-gray-400" /><div><p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-left"> 活動日期 </p><p className="font-bold text-lg text-white text-left">4/25 (六) - 4/26 (日)</p></div></div>
-                                    <div className="flex items-center gap-4"><Icon name="map-pin" className="text-gray-400" /><div><p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-left"> 拍攝地點 </p><p className="font-bold text-lg text-white text-left"> 私密獨棟民宿 </p></div></div>
-                                    <div className="flex items-center gap-4"><Icon name="users" className="text-[#FF0055]" /><div><p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-left"> 預計卡司 </p><p className="font-bold text-lg italic text-[#FF0055] text-left"> 各 16 位頂尖男女優 </p></div></div>
+                                <h1 className="text-4xl md:text-8xl font-black text-white mb-8 leading-[1.1] italic tracking-tighter uppercase text-balance">楚門的慾望世界<br/><span className="text-[#FF0055]">TRUMAN SHOW</span></h1>
+                                <p className="text-gray-400 text-base md:text-2xl max-w-3xl font-light leading-relaxed mb-10">
+                                    邀請 <span className="text-white font-bold underline decoration-[#FF0055] decoration-2 underline-offset-8"> 麻豆男女優們 </span> 加入 2026 年度最受矚目的 24 小時實境直播企劃，這是一場集結 <span className="text-white font-bold italic"> 人氣、窺探與情慾 </span> 的終極直播秀。
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 border-t border-white/5 pt-10 text-balance">
+                                    <div className="flex items-center gap-4"><Icon name="calendar" className="text-gray-600" /><div><p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest"> 活動日期 </p><p className="font-bold text-lg text-white">4/25 (六) - 4/26 (日)</p></div></div>
+                                    <div className="flex items-center gap-4"><Icon name="map-pin" className="text-gray-600" /><div><p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest"> 拍攝地點 </p><p className="font-bold text-lg text-white"> 私密獨棟民宿 </p></div></div>
+                                    <div className="flex items-center gap-4"><Icon name="users" className="text-[#FF0055]" /><div><p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest"> 預計卡司 </p><p className="font-bold text-lg italic text-[#FF0055]"> 各 16 位頂尖男女優 </p></div></div>
                                 </div>
                             </div>
                             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF0055]/10 to-transparent opacity-60"></div>
                         </section>
 
-                        {/* Tab Buttons */}
-                        <div className="flex gap-4 md:gap-8 mb-8 border-b border-white/5 overflow-x-auto whitespace-nowrap pb-1 scrollbar-hide text-left">
+                        {/* Tabs */}
+                        <div className="flex gap-4 md:gap-8 mb-8 border-b border-white/5 overflow-x-auto whitespace-nowrap pb-1 scrollbar-hide text-balance">
                             {[
                                 {id:'invitation', l:'邀約內容 & 待遇'},
                                 {id:'schedule', l:'企劃大綱'},
                                 {id:'timeline', l:'活動時程表'},
                                 {id:'cast', l:'目前卡司 (待確認)'}
                             ].map(t => (
-                                <button key={t.id} onClick={() => setActiveTab(t.id)} className={`pb-4 px-2 text-xs md:text-sm font-black tracking-[0.2em] uppercase transition-all relative ${activeTab === t.id ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}>
+                                <button key={t.id} onClick={() => setActiveTab(t.id)} className={`pb-4 px-2 text-xs md:text-sm font-black tracking-[0.2em] uppercase transition-all relative ${activeTab === t.id ? 'text-white' : 'text-gray-600 hover:text-gray-400'}`}>
                                     {t.l}{activeTab === t.id && <div className="absolute bottom-[-1px] left-0 w-full h-[2px] bg-[#FF0055] shadow-[0_0_10px_#FF0055]"></div>}
                                 </button>
                             ))}
                         </div>
 
-                        {/* Content Area */}
                         <div className="min-h-[500px]">
                             {/* 1. 邀約內容分頁 */}
                             {activeTab === 'invitation' && (
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in text-balance">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in text-balance text-left">
                                     <div className="space-y-6">
-                                        <div className="p-8 rounded-[2.5rem] bg-[#111] border border-white/5 shadow-2xl lg:sticky lg:top-24 text-left">
-                                            <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tighter italic px-1"> 工作範疇 Scope </h3>
-                                            <p className="text-[11px] text-gray-300 font-medium mb-8 px-1 leading-relaxed text-left">
-                                                本次主軸為 24HR 直播，但將拆分為 <strong className="text-white"> 四場直播秀 ＋ 一場實境秀 </strong>，報價請以單場或實境秀內容為主進行評估。
-                                            </p>
-                                            
-                                            <div className="space-y-8">
-                                                <div className="flex gap-4">
-                                                    <div className="w-10 h-10 rounded-full bg-[#FF0055]/20 flex items-center justify-center text-[#FF0055] shrink-0 shadow-lg text-left"> <Icon name="video" size={18} /> </div>
-                                                    <div>
-                                                        <p className="text-xs font-black text-white mb-1 uppercase tracking-widest px-1 text-left"> 單場直播秀 (Show) </p>
-                                                        <p className="text-[13px] text-[#FF0055] font-black italic px-1 text-left"> 工時：3Ｈ / 場 </p>
-                                                        <p className="text-[11px] text-gray-400 mt-1 px-1 leading-relaxed text-left"> (包含 1H 彩排 Re 稿 ＋ 2H 正式演出) </p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="flex gap-4 text-balance">
-                                                    <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 shrink-0 shadow-lg text-left"> <Icon name="home" size={18} /> </div>
-                                                    <div>
-                                                        <p className="text-xs font-black text-white mb-1 uppercase tracking-widest px-1 text-left"> 實境直播秀 (Reality) </p>
-                                                        <p className="text-[13px] text-amber-500 font-black italic px-1 text-left"> 工時：12Ｈ / 場 </p>
-                                                        <p className="text-[11px] text-gray-400 mt-1 px-1 leading-relaxed text-left"> 住在民宿 12 小時，將設計實境橋段（如：洗澡、裸睡、晨砲）。 </p>
-                                                    </div>
-                                                </div>
+                                        <div className="p-8 rounded-[2.5rem] bg-[#111] border border-white/5 shadow-2xl lg:sticky lg:top-24">
+                                            <h3 className="text-xl font-black text-white mb-6 uppercase tracking-tighter italic px-1"> 工作範疇 Scope </h3>
+                                            <div className="space-y-6 text-sm text-left">
+                                                <div className="flex gap-4 items-start"><Icon name="clipboard-check" className="text-[#FF0055] shrink-0 shadow-lg mt-1" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 彩排 Re 稿 </p><p className="text-xs text-gray-500 italic px-1"> 確認流程準備。 </p></div></div>
+                                                <div className="flex gap-4 items-start"><Icon name="video" className="text-[#FF0055] shrink-0 shadow-lg mt-1" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播節目 (120m) </p><p className="text-xs text-gray-500 font-black italic text-[#FF0055] px-1"> 30 分鐘遊戲 ＋ 90 分鐘實戰演出。 </p></div></div>
+                                                <div className="flex gap-4 items-start"><Icon name="clock" className="text-gray-400 shrink-0 shadow-lg mt-1" /><div><p className="text-xs font-bold text-white mb-1 uppercase tracking-widest px-1"> 直播實境 (12H) </p><p className="text-xs text-gray-500 font-black italic text-amber-500 px-1 text-left"> 自然呈現、可參與住宿。 </p></div></div>
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <div className="lg:col-span-2 space-y-10 overflow-hidden text-left">
-                                        <div className="space-y-6">
+                                        <div className="space-y-6 text-balance">
                                             <h3 className="text-2xl font-black italic text-white flex items-center gap-3 px-2 text-left"> <Icon name="shield-check" className="text-[#FF0055]" /> 合作待遇 & 現場保障 </h3>
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 px-1">
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                                                 {benefits.map((b, i) => (
                                                     <div key={i} className="p-6 rounded-3xl bg-[#111] border border-white/5 shadow-xl flex flex-col hover:border-[#FF0055]/30 transition-all text-left">
-                                                        <Icon name={b.icon} className="text-[#FF0055] mb-4" />
+                                                        <Icon name={b.icon} className="text-[#FF0055] mb-4 shrink-0" />
                                                         <h4 className="font-bold text-white mb-2 text-base px-1"> {b.title} </h4>
-                                                        <p className="text-xs text-gray-300 font-medium leading-relaxed px-1"> {b.desc} </p>
+                                                        <p className="text-xs text-gray-500 leading-relaxed px-1"> {b.desc} </p>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
-
-                                        <div className="bg-[#111] rounded-[2.5rem] p-8 md:p-10 border border-white/5 shadow-2xl relative group hover:border-amber-500/30 transition-all text-left text-balance">
-                                            <div className="relative z-10 px-1 md:px-2">
-                                               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 text-left">
-                                                 <div className="flex items-center gap-4 text-left">
-                                                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0"> <Icon name="stethoscope" size={24} /> </div>
-                                                    <div> <h3 className="text-2xl font-black text-white italic tracking-widest px-1 text-left"> ［ 體檢報告 ］ </h3> <p className="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic px-1 text-left"> Medical Certification </p> </div>
+                                        
+                                        <div className="bg-[#111] rounded-[2.5rem] p-8 md:p-10 border border-white/5 shadow-2xl relative group hover:border-amber-500/30 transition-all text-balance">
+                                            <div className="relative z-10 text-left text-balance">
+                                               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 text-balance">
+                                                 <div className="flex items-center gap-4">
+                                                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0 shadow-inner text-balance"> <Icon name="stethoscope" size={24} /> </div>
+                                                    <div> <h3 className="text-2xl font-black text-white italic tracking-widest px-1"> ［ 體檢報告 ］ </h3> <p className="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic px-1"> Medical Certification </p> </div>
                                                  </div>
-                                                 <div className="flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full border border-amber-500/20 shadow-lg text-left"> <Icon name="clock" size={14} className="text-amber-500" /> <span className="text-[10px] font-black text-amber-500 uppercase px-1 text-left"> 時效：下體 一個月內 </span> </div>
+                                                 <div className="flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full border border-amber-500/20 shadow-lg text-balance"> <Icon name="clock" size={14} className="text-amber-500" /> <span className="text-[10px] font-black text-amber-500 uppercase px-1"> 時效：下體 一個月內 </span> </div>
                                                </div>
-                                               <div className="space-y-6 px-1">
-                                                  <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2 text-left"> <Icon name="shield-alert" size={14} className="text-amber-500" /> 必備檢查項目 Items </p>
-                                                  <div className="flex flex-wrap gap-3 text-left"> {['愛滋病', '梅毒', '淋病', '菜花', '皰疹', '披衣菌', 'B型肝炎 (HBS抗原)', 'C型肝炎'].map((it, idx) => ( <span key={idx} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-sm font-bold text-gray-200 shadow-sm text-left"> {it} </span> ))} </div>
+                                               <div className="space-y-6 px-1 text-left text-balance">
+                                                  <p className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2 text-left"> <Icon name="shield-alert" size={14} className="text-amber-500" /> 必備檢查項目 Items </p>
+                                                  <div className="flex flex-wrap gap-3"> {['愛滋病', '梅毒', '淋病', '菜花', '皰疹', '披衣菌', 'B型肝炎 (HBS抗原)', 'C型肝炎'].map((it, idx) => ( <span key={idx} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-sm font-bold text-gray-200 shadow-sm"> {it} </span> ))} </div>
                                                </div>
-                                               <p className="mt-10 text-[11px] text-gray-400 italic leading-relaxed pt-6 border-t border-white/5 px-1 text-left"> ※ 請參與男女優於錄影日前確認報告效期，確保健康安全。 </p>
+                                               <p className="mt-10 text-[11px] text-gray-500 italic leading-relaxed pt-6 border-t border-white/5 text-left text-balance"> ※ 請參與演職員於錄影日前確認報告效期，並提供電子檔至經紀窗口備查。 </p>
                                             </div>
                                         </div>
 
-                                        {/* 隱私承諾 - 修正手機版文字散開問題 */}
-                                        <div className="bg-gradient-to-br from-red-950/40 to-black p-6 md:p-8 rounded-[2rem] border border-red-500/20 shadow-lg mx-1">
+                                        {/* 手機版排版徹底修復 */}
+                                        <div className="bg-gradient-to-br from-red-950/40 to-black p-6 md:p-8 rounded-[2rem] border border-red-500/20 shadow-lg mx-1 text-balance">
                                             <h4 className="text-red-500 font-bold mb-6 flex items-center gap-2 text-base md:text-lg px-1 text-left"> 
                                                 <Icon name="shield-check" size={20} className="shrink-0" /> 
                                                 <span>演職員安全與隱私承諾</span> 
                                             </h4>
-                                            <ul className="space-y-5 text-sm text-gray-200 text-left">
+                                            <ul className="space-y-5 text-sm text-gray-400 px-1 text-left">
                                                 <li className="flex gap-3 items-start leading-relaxed text-left"> 
-                                                    <span className="text-red-500 font-bold shrink-0">•</span> 
-                                                    <span className="flex-1 text-balance text-left">除了直播指定區域，其餘房間皆標註為 <strong> 「絕對禁止攝影區」 </strong>，確保私人隱私。</span>
+                                                    <span className="text-red-500 font-bold shrink-0 mt-1 text-left">•</span> 
+                                                    <span className="flex-1 text-left">除了直播指定區域，其餘房間皆標註為 <strong> 「絕對禁止攝影區」 </strong>，確保私人隱私。</span>
                                                 </li>
-                                                <li className="flex gap-3 items-start leading-relaxed text-left"> 
-                                                    <span className="text-red-500 font-bold shrink-0">•</span> 
-                                                    <span className="flex-1 text-balance text-left">現場配備 <strong> 專業直播團隊 </strong>，即時控管訊號流暢度，確保演出完美呈現。</span>
+                                                <li className="flex gap-3 items-start leading-relaxed text-left text-balance"> 
+                                                    <span className="text-red-500 font-bold shrink-0 mt-1 text-left">•</span> 
+                                                    <span className="flex-1 text-left">現場配備 <strong> 專業直播團隊 </strong>，即時控管訊號與流暢度，確保演出完美呈現。</span>
                                                 </li>
-                                                <li className="flex gap-3 items-start leading-relaxed text-left"> 
-                                                    <span className="text-red-500 font-bold shrink-0">•</span> 
-                                                    <span className="flex-1 text-balance text-left">實境直播期間若需私人休息時間，可隨時向隨行人員提出需求，安排至 <strong> 無開播房間 </strong>。</span>
+                                                <li className="flex gap-3 items-start leading-relaxed text-left text-balance"> 
+                                                    <span className="text-red-500 font-bold shrink-0 mt-1 text-left">•</span> 
+                                                    <span className="flex-1 text-left text-balance whitespace-normal">實境直播期間若需休息，可隨時向隨行人員提出，安排至 <strong> 無開播房間 </strong>。</span>
                                                 </li>
                                             </ul>
                                         </div>
 
-                                        <div className="space-y-6 pt-10 text-left text-balance">
+                                        {/* 聯絡窗口資訊 */}
+                                        <div className="space-y-6 pt-10 text-left text-balance text-left">
                                             <h3 className="text-2xl font-black italic text-white flex items-center gap-3 px-2 text-left"> <Icon name="users" className="text-[#FF0055]" /> 聯絡窗口 Contact Information </h3>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1">
-                                               {/* Kelvin */}
-                                               <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group text-left">
-                                                  <span className="px-3 py-1 bg-[#FF0055]/20 text-[#FF0055] text-[10px] font-black uppercase tracking-widest rounded border border-[#FF0055]/30 italic mb-2 inline-block text-left"> 主播經紀 </span>
-                                                  <h4 className="text-2xl font-black text-white tracking-widest italic mb-6 px-1 text-left"> Kelvin </h4>
-                                                  <div className="space-y-4 text-sm font-bold text-gray-200 text-left">
-                                                      <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white text-left"><Icon name="phone" size={14} className="text-gray-400" /> 手機：0905-514-533</div>
-                                                      <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white text-left"><Icon name="message-square" size={14} className="text-gray-400" /> Line ID：kelvin_0413</div>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1 text-left text-balance">
+                                               <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group text-left text-balance">
+                                                  <span className="px-3 py-1 bg-[#FF0055]/20 text-[#FF0055] text-[10px] font-black uppercase tracking-widest rounded border border-[#FF0055]/30 italic mb-2 inline-block"> 主播經紀 </span>
+                                                  <h4 className="text-2xl font-black text-white tracking-widest italic mb-6 px-1"> Kelvin </h4>
+                                                  <div className="space-y-4 text-sm font-bold text-gray-400 text-left text-balance">
+                                                      <div className="flex items-center gap-3 text-left"><Icon name="phone" size={14} /> 手機：0905514533</div>
+                                                      <div className="flex items-center gap-3 text-left"><Icon name="message-square" size={14} /> Line ID：kelvin_0413</div>
                                                   </div>
                                                </div>
-                                               {/* Christine */}
-                                               <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group text-left">
-                                                  <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest rounded border border-blue-500/30 italic mb-2 inline-block text-left"> BD </span>
-                                                  <h4 className="text-2xl font-black text-white tracking-widest italic mb-6 px-1 text-left"> Christine </h4>
-                                                  <div className="space-y-4 text-sm font-bold text-gray-200 text-left">
-                                                      <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white text-left"><Icon name="phone" size={14} className="text-gray-400" /> 手機：0916-560-694</div>
-                                                      <div className="flex items-center gap-3 px-1 transition-colors group-hover:text-white text-left"><Icon name="message-square" size={14} className="text-gray-400" /> Line ID：christing515</div>
+                                               <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 shadow-2xl relative group text-left text-balance">
+                                                  <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest rounded border border-blue-500/30 italic mb-2 inline-block text-left text-balance"> BD </span>
+                                                  <h4 className="text-2xl font-black text-white italic mb-6 px-1 text-left text-balance"> Christine </h4>
+                                                  <div className="space-y-4 text-sm font-bold text-gray-400 text-left text-balance text-left text-balance">
+                                                      <div className="flex items-center gap-3 text-left text-balance"><Icon name="phone" size={14} /> 手機：0916560694</div>
+                                                      <div className="flex items-center gap-3 text-left text-balance"><Icon name="message-square" size={14} /> Line ID：christing515</div>
                                                   </div>
                                                </div>
                                             </div>
@@ -281,48 +263,49 @@
                                 </div>
                             )}
 
+                            {/* 2. 企劃大綱 */}
                             {activeTab === 'schedule' && (
-                                <div className="space-y-12 animate-fade-in text-left">
+                                <div className="space-y-12 animate-fade-in text-balance text-left">
                                     <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                                         <h3 className="text-2xl md:text-3xl font-black italic text-white mb-10 flex items-center gap-3 px-1 text-left"> <Icon name="home" className="text-[#FF0055]" /> 直播場域配置 </h3>
-                                        <div className="flex flex-col lg:flex-row items-stretch gap-6 text-left">
-                                            <div className="flex-1 p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 flex flex-col text-left">
-                                                <div className="flex items-center justify-between mb-6"> <span className="px-3 py-1 bg-white/10 rounded-full text-[10px] font-black shadow-sm italic text-white">Phase 01</span> <span className="text-[10px] font-black text-blue-400 px-1 italic">前 30 分鐘</span> </div>
-                                                <div className="flex items-center gap-4 mb-4 text-left px-1"> <Icon name="sofa" size={24} className="text-blue-400" /> <h4 className="text-xl font-black px-1 text-white text-balance text-left text-balance"> 客廳 (核心集合區) </h4> </div>
-                                                <p className="text-gray-300 text-sm px-1 text-left text-balance"> 所有演員將在此集合互動，建立直播氣氛。 </p>
+                                        <div className="flex flex-col lg:flex-row items-stretch gap-6 text-balance text-left">
+                                            <div className="flex-1 p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 flex flex-col shadow-inner text-balance text-left">
+                                                <div className="flex items-center justify-between mb-6"> <span className="px-3 py-1 bg-white/10 rounded-full text-[10px] font-black shadow-sm italic text-white text-balance text-left uppercase">Phase 01</span> <span className="text-[10px] font-black text-blue-400 px-1 italic text-balance text-left">前 30 分鐘</span> </div>
+                                                <div className="flex items-center gap-4 mb-4 text-balance text-left"> <Icon name="sofa" size={24} className="text-blue-400" /> <h4 className="text-xl font-black px-1 text-white uppercase text-balance text-left"> 客廳 </h4> </div>
+                                                <p className="text-gray-400 text-sm text-balance text-left"> 所有演員將在此建立直播間氣氛。 </p>
                                             </div>
-                                            <div className="hidden lg:flex items-center justify-center px-4 text-gray-700"> <Icon name="arrow-right" size={24} /> </div>
-                                            <div className="flex-[1.5] p-6 md:p-8 rounded-[2rem] bg-gradient-to-br from-[#FF0055]/10 to-transparent border border-[#FF0055]/30 flex flex-col text-left">
-                                                <div className="flex items-center justify-between mb-6"> <span className="px-3 py-1 bg-[#FF0055]/20 text-[#FF0055] rounded-full text-[10px] font-black shadow-sm italic text-white">Phase 02</span> <span className="text-[10px] font-black text-[#FF0055] px-1 italic text-balance">後 90 分鐘</span> </div>
-                                                <div className="flex items-center gap-4 mb-6 text-left px-1 text-balance"> <Icon name="flame" size={24} className="text-[#FF0055]" /> <h4 className="text-xl font-black px-1 text-white text-left text-balance"> 實戰演出區 </h4> </div>
-                                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-1 text-left text-balance text-left">
+                                            <div className="hidden lg:flex items-center justify-center px-4 text-gray-700 text-balance text-left text-balance text-left text-balance text-left"> <Icon name="arrow-right" size={24} /> </div>
+                                            <div className="flex-[1.5] p-6 md:p-8 rounded-[2rem] bg-gradient-to-br from-[#FF0055]/10 to-transparent border border-[#FF0055]/30 flex flex-col shadow-inner text-balance text-left">
+                                                <div className="flex items-center justify-between mb-6"> <span className="px-3 py-1 bg-[#FF0055]/20 text-[#FF0055] rounded-full text-[10px] font-black shadow-sm italic text-balance text-left uppercase">Phase 02</span> <span className="text-[10px] font-black text-[#FF0055] px-1 italic text-balance text-left uppercase">後 90 分鐘</span> </div>
+                                                <div className="flex items-center gap-4 mb-6"> <Icon name="flame" size={24} className="text-[#FF0055]" /> <h4 className="text-xl font-black px-1 text-white uppercase text-left"> 實戰區 </h4> </div>
+                                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-1">
                                                     {[{i:'sofa',n:'客廳'},{i:'bed',n:'房間'},{i:'bath',n:'浴室'},{i:'chef-hat',n:'廚房'}].map((a,i)=>(
-                                                        <div key={i} className="flex flex-col items-center p-4 bg-black/40 rounded-2xl border border-white/5 shadow-inner">
-                                                            <Icon name={a.i} className="text-gray-400 mb-2" />
-                                                            <span className="text-xs font-black text-gray-300 px-1">{a.n}</span>
+                                                        <div key={i} className="flex flex-col items-center p-4 bg-black/40 rounded-2xl border border-white/5 shadow-inner hover:border-[#FF0055]/30 transition-colors">
+                                                            <Icon name={a.i} className="text-gray-500 mb-2 shrink-0 text-left" />
+                                                            <span className="text-xs font-black text-gray-400 px-1 uppercase text-left">{a.n}</span>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left text-balance">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {plans.map((p, idx) => (
-                                            <div key={idx} className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-[#111] border border-white/5 p-8 flex flex-col group hover:border-[#FF0055]/30 transition-all min-h-[400px] text-left">
+                                            <div key={idx} className="relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-[#111] border border-white/5 p-8 flex flex-col group hover:border-[#FF0055]/30 transition-all min-h-[400px] text-left text-balance text-left text-balance text-left text-balance text-left">
                                                 <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${p.color} opacity-30 group-hover:opacity-100 transition-opacity`}></div>
-                                                <div className="flex justify-between items-start mb-6 px-1 text-left text-balance">
+                                                <div className="flex justify-between items-start mb-6 px-1">
                                                     <span className="px-3 py-1 bg-[#FF0055]/10 text-[#FF0055] rounded-lg text-[10px] font-black uppercase italic shadow-sm px-2 text-left"> {p.type} </span>
-                                                    <div className="text-right px-1 text-left"> <p className="text-[10px] text-gray-400 font-black italic px-1 text-left"> 卡司需求 </p> <p className="text-[11px] font-black text-white italic whitespace-nowrap bg-white/5 px-2 py-0.5 rounded shadow-sm text-left"> {p.requirement} </p> </div>
+                                                    <div className="text-right"> <p className="text-[10px] text-gray-600 font-black italic px-1 text-right"> 卡司需求 </p> <p className="text-[11px] font-black text-white italic whitespace-nowrap bg-white/5 px-2 py-0.5 rounded shadow-sm text-right"> {p.requirement} </p> </div>
                                                 </div>
-                                                <h3 className="text-2xl font-black text-white italic tracking-tighter mb-4 px-1 text-left text-balance"> {p.title} </h3>
-                                                <p className="text-gray-300 text-sm mb-8 italic whitespace-pre-line flex-grow px-1 leading-relaxed text-left text-balance text-left text-balance"> {p.desc} </p>
-                                                <div className="space-y-4 px-1 mt-auto text-left text-balance text-left">
+                                                <h3 className="text-2xl font-black text-white italic tracking-tighter mb-4 px-1 text-left uppercase"> {p.title} </h3>
+                                                <p className="text-gray-400 text-sm mb-8 italic whitespace-pre-line flex-grow px-1 leading-relaxed text-left"> {p.desc} </p>
+                                                <div className="space-y-4 px-1 mt-auto">
                                                     <div className="flex gap-4">
-                                                        <div className="flex-1 bg-black/40 p-4 rounded-2xl border border-white/5 text-center shadow-inner text-left"> <span className="text-[9px] md:text-[10px] font-black uppercase text-gray-400 italic"> {p.phase1Label} </span> </div>
-                                                        <div className="flex-1 bg-black/40 p-4 rounded-2xl border border-white/5 text-center shadow-inner text-left"> <span className="text-[9px] md:text-[10px] font-black uppercase text-[#FF0055] italic"> {p.phase2Label} </span> </div>
+                                                        <div className="flex-1 bg-black/40 p-4 rounded-2xl border border-white/5 text-center shadow-inner"> <span className="text-[9px] md:text-[10px] font-black uppercase text-gray-400 italic px-1"> {p.phase1Label} </span> </div>
+                                                        <div className="flex-1 bg-black/40 p-4 rounded-2xl border border-white/5 text-center shadow-inner"> <span className="text-[9px] md:text-[10px] font-black uppercase text-[#FF0055] italic px-1 text-balance text-left text-balance text-left"> {p.phase2Label} </span> </div>
                                                     </div>
-                                                    <button type="button" className="w-full py-3 bg-white/[0.03] border border-white/10 text-gray-400 text-[11px] font-black uppercase tracking-widest rounded-full flex items-center justify-center gap-2 cursor-default opacity-80 shadow-md"> 
-                                                        <Icon name="file-text" size={14} className="text-gray-500" /> 查看詳細腳本（待提供） 
+                                                    <button type="button" className="w-full py-3 bg-white/[0.03] border border-white/10 text-gray-500 text-[11px] font-black uppercase tracking-widest rounded-full flex items-center justify-center gap-2 cursor-default opacity-80 shadow-md text-balance text-left text-balance text-left text-balance text-left text-balance text-left"> 
+                                                        <Icon name="file-text" size={14} /> 查看詳細腳本（待提供） 
                                                     </button>
                                                 </div>
                                             </div>
@@ -331,107 +314,115 @@
                                 </div>
                             )}
 
-                            {/* 3. 活動時程表分頁 */}
+                            {/* 3. 活動時程表 */}
                             {activeTab === 'timeline' && (
-                                <div className="max-w-4xl mx-auto px-1 animate-fade-in text-left">
-                                    <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden text-balance">
+                                <div className="max-w-4xl mx-auto px-1 animate-fade-in text-left text-balance text-left">
+                                    <div className="bg-[#111] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF0055]/5 blur-[100px] rounded-full"></div>
                                         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-12 px-2 text-balance text-left">
-                                            <h3 className="text-2xl md:text-3xl font-black italic text-white uppercase px-1 text-left text-balance"> 24HRS <span className="text-[#FF0055]">Streaming</span> Orbit </h3>
-                                            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 shadow-sm shrink-0 text-left"> <Icon name="activity" size={14} className="text-red-500 animate-pulse" /> <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1 text-left"> Proportional Time-Scale </span> </div>
+                                            <h3 className="text-2xl md:text-3xl font-black italic text-white uppercase px-1 text-left"> 24HRS <span className="text-[#FF0055]">Streaming</span> Orbit </h3>
+                                            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 shadow-sm"> <Icon name="activity" size={14} className="text-red-500 animate-pulse" /> <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1 text-left text-balance"> Proportional Time-Scale </span> </div>
                                         </div>
-                                        <div className="relative flex gap-2 md:gap-10 px-2 text-left">
-                                            <div className="flex flex-col text-right text-gray-400 text-[10px] font-black w-10 md:w-12 pt-6 shrink-0 text-left">
-                                                {Array.from({ length: 25 }).map((_, i) => ( <div key={i} className="h-[70px] flex flex-col justify-start"> <span className={i % 4 === 0 ? "text-gray-400 text-[11px]" : "opacity-20"}> {(20 + i) % 24}:00 </span> </div> ))}
+                                        <div className="relative flex gap-2 md:gap-10 px-2 text-balance text-left">
+                                            <div className="flex flex-col text-right text-[10px] font-black text-gray-700 w-10 md:w-12 pt-6 shrink-0">
+                                                {Array.from({ length: 26 }).map((_, i) => ( <div key={i} className="h-[70px] flex flex-col justify-start text-balance text-left text-balance text-left"> <span className={i % 4 === 0 ? "text-gray-500 text-[11px]" : "opacity-20"}> {(19 + i) % 24}:00 </span> </div> ))}
                                             </div>
-                                            <div className="flex-1 relative border-l border-white/10 pl-4 md:pl-10 pb-10 text-left text-balance">
+                                            <div className="flex-1 relative border-l border-white/10 pl-4 md:pl-10 pb-10">
                                                 {visualTimeline.map((it, idx) => (
                                                     <div key={idx} className={`relative w-full rounded-2xl border transition-all duration-500 group mb-3 flex flex-col overflow-hidden shadow-lg ${ it.type === 'live' ? 'bg-[#FF0055]/10 border-[#FF0055]/40' : it.type === 'reality' ? 'bg-amber-500/10 border-amber-500/30 border-dashed' : 'bg-white/5 border-white/10 grayscale hover:grayscale-0' }`} style={{ minHeight: `${it.dur * 70}px`, height: 'auto' }} >
-                                                        <div className="p-4 md:p-6 flex flex-col justify-between h-full relative z-10 text-left text-balance">
-                                                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 overflow-hidden text-left text-balance text-left text-balance">
-                                                                <div className="flex items-start gap-4 text-left text-balance text-left text-balance">
-                                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-xl ${ it.type === 'live' ? 'bg-[#FF0055] text-white animate-pulse' : it.type === 'reality' ? 'bg-amber-500 text-black' : 'bg-white/10 text-gray-400' }`}> <Icon name={it.icon} /> </div>
-                                                                    <div className="min-w-0 text-left text-balance text-left text-balance text-left text-balance">
-                                                                        <p className={`text-[10px] font-black uppercase mb-1.5 px-1 ${it.type==='live'?'text-[#FF0055]':it.type==='reality'?'text-amber-500':'text-gray-400'}`}> {it.date} • {it.range} </p>
-                                                                        <h4 className={`text-base md:text-2xl font-black px-1 text-balance ${it.type === 'live' ? 'text-white' : 'text-gray-100'}`}> {it.label} </h4>
+                                                        <div className="p-4 md:p-6 flex flex-col justify-between h-full relative z-10 text-balance overflow-hidden text-left">
+                                                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-balance overflow-hidden text-left">
+                                                                <div className="flex items-start gap-4 text-left">
+                                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-xl ${ it.type === 'live' ? 'bg-[#FF0055] text-white animate-pulse' : it.type === 'reality' ? 'bg-amber-500 text-black' : 'bg-white/10 text-gray-500' }`}> <Icon name={it.icon} /> </div>
+                                                                    <div className="min-w-0 text-left">
+                                                                        <p className={`text-[10px] font-black uppercase mb-1.5 px-1 text-left ${it.type==='live'?'text-[#FF0055]':it.type==='reality'?'text-amber-500':'text-gray-500'}`}> {it.date} • {it.range} </p>
+                                                                        <h4 className={`text-base md:text-2xl font-black px-1 text-left ${it.type === 'live' ? 'text-white' : 'text-gray-300'}`}> {it.label} </h4>
                                                                     </div>
                                                                 </div>
-                                                                <div className="sm:text-right shrink-0 px-1 text-left text-balance text-left text-balance"> <p className="text-[8px] font-black text-gray-400 uppercase italic px-1 text-left text-balance text-left text-balance"> Duration </p> <p className={`font-black text-sm md:text-xl ${it.type === 'live' ? 'text-[#FF0055]' : 'text-gray-200'} px-1 text-left text-balance text-left text-balance text-left text-balance`}> {it.dur}H </p> </div>
+                                                                <div className="sm:text-right shrink-0 px-1 text-right"> <p className="text-[8px] font-black text-gray-600 uppercase italic px-1 text-right text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left"> Duration </p> <p className={`font-black text-sm md:text-xl ${it.type === 'live' ? 'text-[#FF0055]' : 'text-gray-400'} px-1 text-right uppercase`}> {it.dur}H </p> </div>
                                                             </div>
-                                                            {it.sub && <div className="flex items-center gap-3 mt-6 pl-14 md:pl-16 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <div className="h-[1px] w-6 bg-white/20 shrink-0"></div> <span className="text-[11px] md:text-[12px] font-bold text-gray-400 uppercase italic text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> {it.sub} </span> </div>}
+                                                            {it.sub && <div className="flex items-center gap-3 mt-6 pl-14 md:pl-16 px-1 text-balance text-left"> <div className="h-[1px] w-6 bg-white/20 shrink-0"></div> <span className="text-[11px] md:text-[12px] font-bold text-gray-500 uppercase italic text-left"> {it.sub} </span> </div>}
                                                         </div>
                                                     </div>
                                                 ))}
-                                                <div className="absolute top-0 -left-[16px] md:-left-[23px] text-gray-500 bg-[#050505] p-1 border border-white/10 rounded-full shadow-lg"><Icon name="moon" size={14} /></div>
-                                                <div className="absolute top-[1050px] -left-[16px] md:-left-[23px] text-gray-500 bg-[#050505] p-1 border border-white/10 rounded-full shadow-lg"><Icon name="sun" size={14} /></div>
+                                                <div className="absolute top-0 -left-[16px] md:-left-[23px] text-gray-600 bg-[#050505] p-1 border border-white/10 rounded-full shadow-lg"><Icon name="moon" size={14} /></div>
+                                                <div className="absolute top-[1120px] -left-[16px] md:-left-[23px] text-gray-600 bg-[#050505] p-1 border border-white/10 rounded-full shadow-lg"><Icon name="sun" size={14} /></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             )}
 
-                            {/* 4. 目前卡司分頁 (依照 PDF 更新人數) */}
+                            {/* 4. 目前卡司分頁 */}
                             {activeTab === 'cast' && (
                                 <div className="space-y-12 animate-fade-in px-1 text-left text-balance">
-                                    <div className="bg-gradient-to-br from-[#FF0055]/20 to-black p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-[#FF0055]/30 shadow-[0_0_50px_rgba(255,0,85,0.1)] relative overflow-hidden text-left text-balance">
-                                       <div className="absolute -bottom-10 -right-10 opacity-10 text-left text-balance"> <Icon name="users" size={240} /> </div>
-                                       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8 text-left text-balance text-left text-balance">
-                                         <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance">
-                                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF0055] text-white rounded-lg text-[10px] font-black uppercase tracking-[0.2em] mb-4 shadow-lg italic text-left text-balance text-left text-balance text-left text-balance"> Urgent Requirement </div>
-                                           <h3 className="text-3xl md:text-6xl font-black text-white italic tracking-tighter mb-4 leading-[1.2] text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 卡司需求：<br/> 每場 <span className="text-[#FF0055]">4 男優 / 4 女優</span> </h3>
-                                           <p className="text-gray-300 text-sm md:text-lg font-medium max-w-2xl px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 總計需求 16 位男優與 16 位女優。以下為目前確認人員。 </p>
+                                    <div className="bg-gradient-to-br from-[#FF0055]/20 to-black p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-[#FF0055]/30 shadow-[0_0_50px_rgba(255,0,85,0.1)] relative overflow-hidden text-balance text-left">
+                                       <div className="absolute -bottom-10 -right-10 opacity-10"> <Icon name="users" size={240} /> </div>
+                                       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8 text-left text-balance text-left text-balance text-left text-balance text-left">
+                                         <div>
+                                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF0055] text-white rounded-lg text-[10px] font-black uppercase tracking-[0.2em] mb-4 shadow-lg italic px-2 text-left"> Cast Status </div>
+                                           <h3 className="text-3xl md:text-6xl font-black text-white italic tracking-tighter mb-4 leading-[1.2] uppercase text-left"> 卡司需求：<br/> 每場 <span className="text-[#FF0055]">4 男優 / 4 女優</span> </h3>
+                                           <p className="text-gray-400 text-sm md:text-lg font-medium leading-relaxed max-w-2xl px-1 text-left"> 總需求 16 位男優與 16 位女優。目前正在進行卡司確認。 </p>
                                          </div>
-                                         <div className="px-6 py-4 bg-white/5 border border-white/10 rounded-[2rem] flex items-center gap-4 shadow-xl shrink-0 text-left text-balance text-left text-balance text-left text-balance">
-                                            <Icon name="alert-circle" className="text-amber-500" />
-                                            <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"><p className="text-[10px] text-gray-400 font-black uppercase tracking-widest px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> Status </p><p className="text-sm font-bold text-white whitespace-nowrap px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 待確認，可能會調整 </p></div>
+                                         <div className="px-6 py-4 bg-white/5 border border-white/10 rounded-[2rem] flex items-center gap-4 shadow-xl text-left">
+                                            <Icon name="alert-circle" className="text-amber-500 shrink-0" />
+                                            <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left"><p className="text-[10px] text-gray-500 font-black uppercase tracking-widest px-1 text-left"> Status </p><p className="text-sm font-bold text-white whitespace-nowrap px-1 uppercase text-left"> 已確認，陸續更新中 </p></div>
                                          </div>
                                        </div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left text-balance text-left text-balance">
-                                       {castTimeline.map((s, i) => (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left text-balance text-left text-balance text-left text-balance text-left">
+                                       {castData.map((s, i) => (
                                           <div key={i} className={`bg-[#111] rounded-[2.5rem] border p-8 hover:scale-[1.02] transition-all flex flex-col group shadow-xl ${s.type === 'reality' ? 'border-amber-500/40 bg-gradient-to-b from-amber-500/[0.03] to-[#111]' : 'border-white/5'}`}>
-                                            <div className="mb-8 pb-6 border-b border-white/5 px-1 relative text-left text-balance text-left text-balance text-left text-balance">
-                                               <div className="flex items-center gap-2 mb-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <span className={`w-2 h-2 rounded-full animate-pulse ${s.type==='reality'?'bg-amber-500 shadow-[0_0_8px_#F59E0B]':'bg-[#FF0055] shadow-[0_0_8px_#FF0055]'}`}></span> <p className={`text-[10px] font-black uppercase tracking-widest italic ${s.type==='reality'?'text-amber-500':'text-gray-400'} text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance`}> {s.time} </p> </div>
-                                               <h4 className="text-xl font-black text-white italic tracking-tight leading-tight group-hover:text-[#FF0055] transition-colors px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> {s.theme} </h4>
-                                               {s.type==='reality' && <div className="absolute top-0 right-0 opacity-20 px-2 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"><Icon name="eye" size={20} className="text-amber-500" /></div>}
+                                            <div className="mb-8 pb-6 border-b border-white/5 px-1 relative text-left">
+                                               <div className="flex items-center gap-2 mb-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left"> <span className={`w-2 h-2 rounded-full animate-pulse ${s.type==='reality'?'bg-amber-500 shadow-[0_0_8px_#F59E0B]':'bg-[#FF0055] shadow-[0_0_8px_#FF0055]'}`}></span> <p className={`text-[10px] font-black uppercase tracking-widest italic text-left ${s.type==='reality'?'text-amber-500':'text-gray-500'}`}> {s.time} </p> </div>
+                                               <h4 className="text-xl font-black text-white italic tracking-tight leading-tight group-hover:text-[#FF0055] transition-colors px-1 text-balance text-left uppercase"> {s.theme} </h4>
+                                               {s.type==='reality' && <div className="absolute top-0 right-0 opacity-20 px-2 text-left"><Icon name="eye" size={20} className="text-amber-500" /></div>}
                                             </div>
-                                            <div className="space-y-8 flex-grow px-1 text-left text-balance text-left text-balance text-left text-balance">
-                                               <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance">
-                                                 <div className="flex justify-between items-center mb-4 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] flex items-center gap-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 男優 Actor </p> <p className="text-[9px] font-black text-gray-400 uppercase px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> Slot: {s.male.length}/4 </p> </div>
-                                                 <div className="grid grid-cols-2 gap-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> {Array.from({length:4}).map((_,j)=>(
-                                                     <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.male[j]?'bg-white/5 border-white/10 text-white shadow-inner':'border-dashed border-white/10 text-gray-500'}`}> {s.male[j] ? <><Icon name="user-check" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> {s.male[j]}</> : '邀約中'} </div>
-                                                 ))} </div>
+                                            <div className="space-y-8 flex-grow px-1 text-left text-balance text-left text-balance text-left text-balance text-left">
+                                               <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left">
+                                                 <div className="flex justify-between items-center mb-4 px-1 text-left text-balance text-left text-balance text-left text-balance text-left"> <p className="text-[10px] font-black text-gray-400 uppercase flex items-center gap-2 px-1 text-left"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 男優 Actor </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1 italic text-left"> Slot: {s.male.length}/4 </p> </div>
+                                                 <div className="grid grid-cols-2 gap-2 px-1 text-left"> 
+                                                    {Array.from({length: Math.max(4, s.male.length)}).map((_,j)=>(
+                                                        <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.male[j]?'bg-white/5 border-white/10 text-white shadow-inner':'border-dashed border-white/10 text-gray-700'}`}> 
+                                                            {s.male[j] ? <><Icon name="user-check" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> {s.male[j]}</> : '邀約中'} 
+                                                        </div>
+                                                    ))} 
+                                                 </div>
                                                </div>
-                                               <div className="text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance">
-                                                 <div className="flex justify-between items-center mb-4 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] flex items-center gap-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 女優 Actress </p> <p className="text-[9px] font-black text-gray-400 uppercase px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> Slot: {s.female.length}/4 </p> </div>
-                                                 <div className="grid grid-cols-2 gap-2 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> {Array.from({length:4}).map((_,j)=>(
-                                                     <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.female[j]?'bg-[#FF0055]/10 border-[#FF0055]/30 text-[#FF0055] shadow-md':'border-dashed border-white/20 text-gray-500'}`}> {s.female[j] ? <><Icon name="user-check" size={12} /> {s.female[j]}</> : '邀約中'} </div>
-                                                 ))} </div>
+                                               <div className="text-left text-balance text-left text-balance text-left text-balance text-left">
+                                                 <div className="flex justify-between items-center mb-4 px-1 text-left"> <p className="text-[10px] font-black text-gray-400 uppercase flex items-center gap-2 px-1 text-left"> <Icon name="star" size={12} className={s.type==='reality'?'text-amber-500':'text-[#FF0055]'} /> 女優 Actress </p> <p className="text-[9px] font-black text-gray-600 uppercase px-1 italic text-left"> Slot: {s.female.length}/4 </p> </div>
+                                                 <div className="grid grid-cols-2 gap-2 px-1 text-left"> 
+                                                    {Array.from({length: Math.max(4, s.female.length)}).map((_,j)=>(
+                                                        <div key={j} className={`px-3 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-colors ${s.female[j]?'bg-[#FF0055]/10 border-[#FF0055]/30 text-[#FF0055] shadow-md':'border-dashed border-white/10 text-gray-700'}`}> 
+                                                            {s.female[j] ? <><Icon name="user-check" size={12} /> {s.female[j]}</> : '邀約中'} 
+                                                        </div>
+                                                    ))} 
+                                                 </div>
                                                </div>
                                             </div>
                                           </div>
                                        ))}
                                     </div>
-                                    <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-6 shadow-2xl px-8 mx-1 text-left text-balance text-left text-balance text-left text-balance">
-                                       <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20 shadow-lg px-2 text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> <Icon name="alert-circle" className="text-amber-500" /> </div>
-                                       <p className="text-xs md:text-sm text-gray-300 italic leading-relaxed px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> ※ 重要說明：官方保有調整演出卡司及企劃內容之權利。 </p>
+                                    <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-6 shadow-2xl px-8 mx-1 text-left">
+                                       <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20 shadow-lg px-2 text-balance text-left"> <Icon name="alert-circle" className="text-amber-500" /> </div>
+                                       <p className="text-xs md:text-sm text-gray-500 italic leading-relaxed px-1 text-left text-balance"> ※ 重要說明：官方保有最終調整演出人選、更換卡司以及修改內容之權利。 </p>
                                     </div>
                                 </div>
                             )}
                         </div>
                     </main>
 
-                    <footer className="border-t border-white/5 py-16 md:py-24 px-6 bg-[#030303] text-center text-balance mt-auto text-left text-balance text-left text-balance">
-                        <div className="max-w-xl mx-auto space-y-8 px-2 text-left text-balance text-left text-balance text-left text-balance">
-                            <img src={logoUrl} alt="SWAG" className="h-12 md:h-16 mx-auto mb-10 opacity-70 grayscale shadow-lg text-left text-balance text-left text-balance text-left text-balance text-left text-balance" />
-                            <div className="space-y-4 px-1 text-center text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 
-                                <h2 className="text-xl md:text-2xl font-black text-white italic tracking-[0.2em] uppercase underline decoration-[#FF0055] decoration-2 underline-offset-8 px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 楚門的慾望世界 </h2> 
-                                <p className="text-[10px] text-[#FF0055] font-black uppercase tracking-widest px-2 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 24HR 麻豆女神實境直播 </p> 
+                    <footer className="border-t border-white/5 py-16 md:py-24 px-6 bg-[#030303] text-center text-balance mt-auto">
+                        <div className="max-w-xl mx-auto space-y-8 px-2 text-center text-balance">
+                            <img src={logoUrl} alt="SWAG" className="h-12 md:h-16 mx-auto mb-10 opacity-70 grayscale shadow-lg" />
+                            <div className="space-y-4 px-1 text-center uppercase text-balance text-balance"> 
+                                <h2 className="text-xl md:text-2xl font-black text-white italic tracking-[0.2em] underline decoration-[#FF0055] decoration-2 underline-offset-8 px-1 text-center uppercase"> 楚門的慾望世界 </h2> 
+                                <p className="text-[10px] text-[#FF0055] font-black uppercase tracking-widest px-2 text-center text-balance"> 24HR 麻豆女神實境直播 </p> 
                             </div>
-                            <p className="text-gray-300 text-xs md:text-sm leading-relaxed font-light px-4 px-1 text-center text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 本企劃為 SWAG 官方機密商業提案，專門針對優秀演藝人員發出之邀請。若有報價細節諮詢，請透過經紀管道與窗口聯繫。 </p>
-                            <div className="pt-10 flex flex-col items-center gap-2 text-center text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> 
-                                <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.8em] px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> Production Team / SWAG Official </p> 
-                                <p className="text-[10px] md:text-xs text-gray-500 font-mono italic tracking-widest uppercase px-1 text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance text-left text-balance"> Proposal ID: SWAG-ACTOR-RECRUIT-2026 </p> 
+                            <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light px-4 px-1 text-center text-balance"> 本企劃為 SWAG 官方機密商業提案，專門針對優秀演藝人員發出之邀請。若有報價細節諮詢，請透過經紀管道與窗口聯繫。 </p>
+                            <div className="pt-10 flex flex-col items-center gap-2 text-center text-balance text-balance"> 
+                                <p className="text-[9px] font-black text-gray-700 uppercase tracking-[0.8em] px-1 text-center"> Production Team / SWAG Official </p> 
+                                <p className="text-[10px] md:text-xs text-gray-400 font-mono italic tracking-widest uppercase px-1 text-center"> Proposal ID: SWAG-ACTOR-RECRUIT-2026 </p> 
                             </div>
                         </div>
                     </footer>
